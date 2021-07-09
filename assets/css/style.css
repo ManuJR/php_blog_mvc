@@ -1,0 +1,12 @@
+#main_content{
+    min-height: 80vh;
+}
+
+/* FOOTER */
+footer{
+    height: 100px;
+    background: #d7d7d7;
+}
+footer .container,footer .row{
+    height: 100%;
+}
