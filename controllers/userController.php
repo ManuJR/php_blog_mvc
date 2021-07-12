@@ -30,12 +30,8 @@
             try {
 
                 $user = User::login( $_POST );
+                header("Location: /");
 
-                echo "LOGIN CON ÉXITO";
-                echo "<br>";
-                print_r($user);
-                echo "<br>";
-                print_r($_SESSION);
             } catch (\Throwable $th) {
               
                 $error = $th->getMessage();
@@ -43,7 +39,12 @@
             }
         }
 
-
+        public function logout(){
+            global $session;
+        
+            $session -> destroy();
+            header("Location: /");
+        }
     }
     
 

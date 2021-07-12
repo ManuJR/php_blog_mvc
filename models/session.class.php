@@ -19,8 +19,16 @@
             $this->isLogged = true;
         }
 
+        /**
+         * Hacer Logout
+         */
         public function destroy(){
-            
+            // Borrado de variables de SESSION
+            unset($_SESSION);
+            // Borrado de cookie
+            setcookie( session_name(), "", time()-1 );
+            // Destrucción de la session
+            session_destroy();
         }
 
         public function isLogged(){

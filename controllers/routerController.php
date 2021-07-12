@@ -67,6 +67,14 @@
                 
             }
 
+            // POST    /logout        Logout USARIO
+            if( $this->method == "POST" && $this->uri == "/logout" ){
+                
+                $userController = new UserController();
+                $userController->logout();
+                
+            }
+
         } 
     
     }

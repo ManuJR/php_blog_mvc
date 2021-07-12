@@ -1,8 +1,9 @@
 <?php
 
+$session;
     class WebController
     {
-        
+
         public function __construct( )
         {   
           

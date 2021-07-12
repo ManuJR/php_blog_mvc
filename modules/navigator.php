@@ -11,11 +11,11 @@
 		<?php }else{ ?>
 
 			<li class="nav-item">
-				<span class=" btn btn-outline-light"> </span>
+				<span class=" btn btn-outline-light"> correo@correo.com </span>
 			</li>
 			<li class="nav-item">
-				<form action="/logout" method="POST" >
-					<input type="submit" value="Logout">
+				<form  action="/logout" method="POST" >
+					<input class="btn btn-outline-light" type="submit" value="Logout">
 				</form>
 			</li>
 

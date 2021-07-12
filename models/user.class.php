@@ -85,12 +85,12 @@
 
         public static function login( $params ){
             
+            // Validando campos
             self::validateLoginFields( $params );
 
             $user = self::checkLoginDB( $params );
-            
             global $session;
-            $session->create( $user );
+            $session->create( $user ); // name, surname, password, email...
 
             return $user;
         }
