@@ -12,6 +12,7 @@ $session;
         
         public function index(){
           global $session;
+          $articles = Article::list();
           require_once($_SERVER['DOCUMENT_ROOT']."/views/web/index.php");
 
         }

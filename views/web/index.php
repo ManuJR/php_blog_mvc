@@ -19,11 +19,10 @@
 		<div id="articles_content" class="d-flex align-items-start">
 
 			<?php
-				require($_SERVER['DOCUMENT_ROOT']."/modules/article/thumb.php");
-				require($_SERVER['DOCUMENT_ROOT']."/modules/article/thumb.php");
-				require($_SERVER['DOCUMENT_ROOT']."/modules/article/thumb.php");
-				require($_SERVER['DOCUMENT_ROOT']."/modules/article/thumb.php");
-
+				// Articulos de la bbdd
+				foreach ($articles as $article) {
+					require($_SERVER['DOCUMENT_ROOT']."/modules/article/thumb.php");
+				}
 			?>
 			
 		</div>

@@ -10,7 +10,7 @@
 
         public function create(){
             global $session;
-            echo "<br>";
+           
             try {
 
                 Article::create($_POST, $session);
@@ -22,6 +22,12 @@
 
         public function new(){
             global $session;
+            // Si no hay session redirijo a login
+            if( !$session -> isLogged() ){
+                header("Location: /login");
+                return;
+            }
+            
             require_once($_SERVER['DOCUMENT_ROOT']."/views/article/create.php");
         }
 

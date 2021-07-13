@@ -1,8 +1,8 @@
 <div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="/assets/imgs/blog_default.png" alt="Card image cap">
+  <img class="card-img-top" src="<?= $article->img ?>" alt="Card image cap">
   <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <h5 class="card-title"><?= $article->title ?></h5>
+    <p class="card-text"><?= $article->short_text ?></p>
+    <a href="/article/<?= $article->id ?>" class="btn btn-primary">Leer más</a>
   </div>
 </div>
