@@ -75,6 +75,19 @@
                 
             }
 
+            // Vista de creación de artículo
+            if( $this->method == "GET" && $this->uri == "/article/new" ){
+            
+                $articleController = new ArticleController();
+                $articleController -> new();
+            }
+
+            // Creación de artículo
+            if( $this->method == "POST" && $this->uri == "/article/create" ){
+            
+                $articleController = new ArticleController();
+                $articleController -> create();
+            }
         } 
     
     }

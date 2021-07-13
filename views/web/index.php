@@ -11,9 +11,22 @@
     <?php
 	    require_once($_SERVER['DOCUMENT_ROOT']."/modules/navigator.php");
 	?>
-    <div id="main_content">
-        Aquí vendrán los artículos de mi BLOG...
+    <div id="main_content" class="d-flex flex-column">
+		<div id="header_actions">
+			<a href="/article/new" class="btn btn-success"> Nuevo artículo </a>
+		</div>
 
+		<div id="articles_content" class="d-flex align-items-start">
+
+			<?php
+				require($_SERVER['DOCUMENT_ROOT']."/modules/article/thumb.php");
+				require($_SERVER['DOCUMENT_ROOT']."/modules/article/thumb.php");
+				require($_SERVER['DOCUMENT_ROOT']."/modules/article/thumb.php");
+				require($_SERVER['DOCUMENT_ROOT']."/modules/article/thumb.php");
+
+			?>
+			
+		</div>
     </div>
 
     <!-- FOOTER -->

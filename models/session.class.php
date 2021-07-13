@@ -45,6 +45,13 @@
             
             return $_SESSION;
         }
+
+        public function getUserId(){
+            if(!$this->data){
+                return;
+            }
+            return $this->data['id'];
+        }
         
         
     }

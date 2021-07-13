@@ -1,5 +1,17 @@
 #main_content{
     min-height: 80vh;
+    padding: 30px;
+    flex-wrap: wrap;
+}
+#main_content #header_actions{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+#main_content #articles_content .card{
+    margin: 10px;
 }
 
 /* FOOTER */
