@@ -27,10 +27,23 @@
                 header("Location: /login");
                 return;
             }
-            
+
             require_once($_SERVER['DOCUMENT_ROOT']."/views/article/create.php");
         }
 
+
+        public function show( $id ){
+            global $session;
+            try {
+                $article = Article::getById( $id );
+                // carga de vista de artículo
+                require_once($_SERVER['DOCUMENT_ROOT']."/views/article/show.php");
+
+            } catch (\Throwable $th) {
+               echo $th->getMessage();
+            }
+
+        }
     }
     
 

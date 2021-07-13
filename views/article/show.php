@@ -15,22 +15,19 @@
 	?>
 
 	<!-- POST -->
-	<div class="container page post">
-		<div class="row justify-content-center">
-			<span>3/6/2021</span>
+	<div id="post" class="container page">
+		<div class="row flex-column justify-content-center">
+			<span><?= $article -> created_at ?></span>
+			<img src="/assets/imgs/blog_default.png">
 		</div>
 
-		
-			<img src="/assets/imgs/blog_default.png">
-		
-
-			<h1>Título del artículo</h1>
+			<h1><?= $article -> title ?></h1>
 			<div class="body_post">
-				<p>Texto del artículo</p>
+				<p><?= $article -> text ?></p>
 			</div>
 		<div class="row justify-content-end">
 			<div class="col-6">
-				Autor: Pepe
+				Autor: <?= $article -> user_id ?>
 			</div>
 			
 		</div>

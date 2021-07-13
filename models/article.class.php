@@ -97,6 +97,35 @@
 
             return $articles;
         }
+        /**
+         * Función que obtiene un artículo por id de la BBDD
+         * Devuelve un Objeto Artículo
+         * */ 
+        public static function getById( $id ){
+            // 1. conexión
+            $db = DBConnection::connect();
+
+            // 2. query de SELECT
+            $query = "SELECT * FROM `article` WHERE `id`='$id'";
+           
+            // 3. ejecutar query
+            $exec_query = $db -> query($query);
+            print_r($exec_query);
+            //die("");
+            if( !$exec_query){
+                throw new Exception("Ha habido un error obteniendo el artículo");
+            }
+            if(  $exec_query->num_rows != 1 ){
+                throw new Exception("No se encuentra el artículo");
+            }
+            
+            // 4. Recoger datos
+            $article_data = $exec_query->fetch_assoc();
+    
+            // 5. Convertir datos a objetos Article
+            $article = new Article( $article_data );
+            return $article;
+        }
     }
     
 
