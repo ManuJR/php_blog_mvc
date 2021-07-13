@@ -18,7 +18,13 @@
 
         }
 
-        public function request( $method, $uri, $controller, $action ){
+        /**
+         * @param $method_must Método que debe venir en la uri
+         * @param $uri_must Uri que debe venir para enviar a controlador - acción
+         * @param $controller Clase del controlador al que enviamos esa ruta 
+         * @param $action Método del controlador que se ejecuta
+         */
+        public function request( $method_must, $uri_must, $controller, $action ){
             $id = null;
 
             /* Dos tipos de url:
@@ -27,7 +33,7 @@
             */
 
             // Sustituimos el caracter / por la / escapada: \/ , para generar la expresión regular de forma dinámica con cualquier uri.
-            $regexp_uri = str_replace('/', '\/', $uri);
+            $regexp_uri = str_replace('/', '\/', $uri_must);
 
             // Utilizaremos :id para los parámetros /id en las uris. Por eso, sustituimos el string :id, si viene, por [0-9]+, para ponerlo en la exp. regular
 
@@ -47,7 +53,7 @@
             $validate_uri = preg_match($regExp, $this->uri);
            
    
-            if( $this->method == $method && $validate_uri){
+            if( $this->method == $method_must && $validate_uri){
                
                 $controller = new $controller();
                 $controller -> $action( $id );
@@ -76,17 +82,7 @@
             // Creación de artículo
             $this->request( "POST", "/article/create", "ArticleController", "create");
 
-            
-
             // Visualización de artículo /article/{id}
-            //$this->request( "POST", "/article/:id", "ArticleController", "show");
-
-
-            // if( $this->method == "GET" && preg_match("/^\/article\/[0-9]+$/", $this->uri) ){
-            //     $id = str_replace( "/article/", "",  $this->uri );
-            //     $articleController = new ArticleController();
-            //     $articleController -> show( $id );
-            // }
 
             $this->request( "GET", "/article/:id", "ArticleController", "show");
         } 
