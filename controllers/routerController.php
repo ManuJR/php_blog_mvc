@@ -82,6 +82,11 @@
             // Visualización de artículo /article/{id}
             $this->request( "GET", "/article/:id", "ArticleController", "show");
             
+            // Vista de Edición de un artículo /article/edit/{id}
+            $this->request( "GET", "/article/edit/:id", "ArticleController", "edit_view");
+
+            // Vista de Edición de un artículo /article/edit/{id}
+            $this->request( "POST", "/article/edit/:id", "ArticleController", "update");
         } 
     
     }

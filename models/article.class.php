@@ -77,6 +77,40 @@
 
         }
 
+        public static function update( $id, $params, Session $session ){
+            // si nohay session, lanzamos excepción de error
+            if( !$session->isLogged() ){
+                throw new Exception("No hay ningún usuario logueado");
+            }
+
+            $db = DBConnection::connect();
+
+            $title      = $params['title'];
+            $text       = $params['text'];
+            
+            // Hay que coger el user_id de la SESSION ACTIVA.
+            $user_id    = $session -> getUserId();
+
+            // Query de guardado en BBDD
+            $q_update = "UPDATE `article` SET `title`='$title',`text`='$text' WHERE `id`= '$id'";
+            
+            // Ejecutar query
+            $exec_q_insert = $db -> query($q_update);
+
+            if( !$exec_q_insert ){
+                throw new Exception("Fallo al guardar artículo");
+            }
+            // obtenemos el id generado por la última consulta mysqli
+           
+            $newpost_params = [ 
+                'id'    =>  $db -> insert_id,
+                'title' =>  $title,
+                'text'  =>  $text 
+            ];
+           return new Article( $newpost_params );
+
+        }
+
         public static function list( ){
             // 1. conexión
             $db = DBConnection::connect();

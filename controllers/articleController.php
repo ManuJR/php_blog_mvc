@@ -46,6 +46,34 @@
             }
 
         }
+
+        public function edit_view( $id ){
+            global $session;
+            try {
+                $article = Article::getById( $id );
+                
+                // carga de vista de artículo
+                require_once($_SERVER['DOCUMENT_ROOT']."/views/article/edit.php");
+
+            } catch (\Throwable $th) {
+               echo $th->getMessage();
+            }
+
+        }
+
+        public function update( $id ){
+            global $session;
+            try {
+                
+                $update_article = Article::update( $id , $_POST, $session);
+                header("Location:/article/edit/$id");
+                return;
+
+            } catch (\Throwable $th) {
+               echo $th->getMessage();
+            }
+
+        }
     }
     
 
