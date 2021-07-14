@@ -3,19 +3,17 @@
     class Article extends DBConnection {
         private $id;
         private $title;
-        private $text;
-
-        // Pasar a Modelo User. De momento lo dejo así.
+        private $text;        
         private $user_id;
-        private $autor_name;
-        private $autor_surname;
-        private $autor_email;
-
+        private $author;
         private $img;
         private $short_text;
         private $created_at;
-       
+        private $session;
+
         public function __construct( $params ){
+            global $session;
+            $this->session = $session;
             foreach ($params as $key => $value) {
                
                 if( $key == "img" && ( empty($value) || $value =="" ) ){
@@ -26,7 +24,8 @@
             }
 
             $this -> short_text = $this -> generateShortText();
-         
+            $this -> saveAuthorData( $params );
+
         }
 
         public function __get($name){
@@ -130,6 +129,28 @@
             // 5. Convertir datos a objetos Article
             $article = new Article( $article_data );
             return $article;
+        }
+
+        private function saveAuthorData( $params ){
+            
+            if( !empty( $params['user_id'] ) && !empty( $params['autor_name'] ) ){
+                $params_user = [
+                     'id' => $params['user_id'],
+                     'name' => $params['autor_name'],
+                     'surname' => $params['autor_surname'],
+                     'email' => $params['autor_email']
+                ];
+                $this -> author = new User( $params_user );
+            }
+        }
+
+        public function isWritedByLoggedUser(){
+            
+            if( $this -> session -> isLogged() && $this -> session -> getId() == $this -> user_id){
+                return true;
+            }
+            return false;
+            
         }
     }
     

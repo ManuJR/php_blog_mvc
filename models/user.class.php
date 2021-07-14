@@ -3,6 +3,7 @@
     class User extends DBConnection {
         private $id;
         private $name;
+        private $surname;
         private $email;
         private $password;
         private $created_at;

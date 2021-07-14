@@ -56,6 +56,9 @@
         public function getEmail(){
             return $this -> data['email'];
         }
+        public function getId(){
+            return $this -> data['id'];
+        }
         
     }
     

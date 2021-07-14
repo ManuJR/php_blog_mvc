@@ -16,18 +16,24 @@
 
 	<!-- POST -->
 	<div id="post" class="container page">
+		<!-- Solo aparece si soy el que ha escrito el artículo -->
+		<?php if( $article -> isWritedByLoggedUser() ){ ?>
+			<div id="actions">
+				<a href="/article/edit/<?= $article -> id ?>" class="btn btn-warning"> Editar</a>
+			</div>
+		<?php } ?>
 		<div class="row flex-column justify-content-center">
-			<span><?= $article -> created_at ?></span>
 			<img src="/assets/imgs/blog_default.png">
+			<span class="created"><?= $article -> created_at ?></span>
 		</div>
 
-			<h1><?= $article -> title ?></h1>
-			<div class="body_post">
-				<p><?= $article -> text ?></p>
-			</div>
+		<h1><?= $article -> title ?></h1>
+		<div class="body_post">
+			<p><?= $article -> text ?></p>
+		</div>
 		<div class="row justify-content-end">
 			<div class="col-6">
-				Autor: <?= $article -> autor_name." ". $article -> autor_surname ?>
+				Autor: <?= $author -> name." ". $author -> surname ?>
 			</div>
 			
 		</div>

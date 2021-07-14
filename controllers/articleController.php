@@ -36,7 +36,8 @@
             global $session;
             try {
                 $article = Article::getById( $id );
-                
+                $author = $article -> author;
+
                 // carga de vista de artículo
                 require_once($_SERVER['DOCUMENT_ROOT']."/views/article/show.php");
 

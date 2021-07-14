@@ -23,6 +23,18 @@
 .page#post{
     min-height: 120vh;
     padding: 50px 100px;
+    position: relative;
+}
+.page#post #actions{
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    right: 0;
+    top: 50px;
+}
+.page#post .created{
+    display: flex;
+    justify-content: flex-end;
 }
 .page#post img{
     width: 100%;
