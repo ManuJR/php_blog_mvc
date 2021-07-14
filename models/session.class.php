@@ -53,6 +53,9 @@
             return $this->data['id'];
         }
         
+        public function getEmail(){
+            return $this -> data['email'];
+        }
         
     }
     

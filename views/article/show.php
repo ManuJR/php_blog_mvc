@@ -27,7 +27,7 @@
 			</div>
 		<div class="row justify-content-end">
 			<div class="col-6">
-				Autor: <?= $article -> user_id ?>
+				Autor: <?= $article -> autor_name." ". $article -> autor_surname ?>
 			</div>
 			
 		</div>

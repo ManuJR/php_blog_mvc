@@ -19,7 +19,6 @@
 
             } catch (\Throwable $th) {
                 echo "ERROR CREANDO USARIO<br>";
-                print_r($th->getMessage());
                 $error = $th->getMessage();
                 require_once($_SERVER['DOCUMENT_ROOT']."/views/user/signup.php");
             }

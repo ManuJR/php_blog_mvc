@@ -11,7 +11,7 @@
 		<?php }else{ ?>
 
 			<li class="nav-item">
-				<span class=" btn btn-outline-light"> correo@correo.com </span>
+				<span class=" btn btn-outline-light"> <?= $session -> getEmail() ?> </span>
 			</li>
 			<li class="nav-item">
 				<form  action="/logout" method="POST" >

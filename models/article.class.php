@@ -4,7 +4,13 @@
         private $id;
         private $title;
         private $text;
+
+        // Pasar a Modelo User. De momento lo dejo así.
         private $user_id;
+        private $autor_name;
+        private $autor_surname;
+        private $autor_email;
+
         private $img;
         private $short_text;
         private $created_at;
@@ -106,12 +112,11 @@
             $db = DBConnection::connect();
 
             // 2. query de SELECT
-            $query = "SELECT * FROM `article` WHERE `id`='$id'";
-           
+            $query = "SELECT `article`.`*`, `user`.`name` AS 'autor_name', `user`.`surname` AS 'autor_surname', `user`.`email` AS 'autor_email' FROM `article`, `user` WHERE `article`.`id`='$id' AND `article`.`user_id` = `user`.`id`";
+            
             // 3. ejecutar query
             $exec_query = $db -> query($query);
-            print_r($exec_query);
-            //die("");
+            
             if( !$exec_query){
                 throw new Exception("Ha habido un error obteniendo el artículo");
             }

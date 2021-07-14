@@ -11,12 +11,14 @@
         public function __construct(){
             $this->method   =   $_SERVER['REQUEST_METHOD'];
             $this->uri      =   $_SERVER['REQUEST_URI'];
-
-
-             // Preguntar si hay session abierta! Si alguien ha hecho login previamente...
-            //$this->checkSession();
-
         }
+
+
+        /* Dos tipos de url:
+            1.  /article/create, /login, /signup ...
+            2.  /article/3 , /article/edit/34  ...
+        */
+
 
         /**
          * @param $method_must Método que debe venir en la uri
@@ -26,12 +28,7 @@
          */
         public function request( $method_must, $uri_must, $controller, $action ){
             $id = null;
-
-            /* Dos tipos de url:
-                1.  /article/create, /login, /signup ...
-                2.  /article/3 , /article/edit/34  ...
-            */
-
+            
             // Sustituimos el caracter / por la / escapada: \/ , para generar la expresión regular de forma dinámica con cualquier uri.
             $regexp_uri = str_replace('/', '\/', $uri_must);
 
@@ -83,8 +80,8 @@
             $this->request( "POST", "/article/create", "ArticleController", "create");
 
             // Visualización de artículo /article/{id}
-
             $this->request( "GET", "/article/:id", "ArticleController", "show");
+            
         } 
     
     }
