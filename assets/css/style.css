@@ -1,3 +1,4 @@
+/* INDEX */
 #main_content{
     min-height: 80vh;
     padding: 30px;
@@ -15,6 +16,13 @@
 }
 #main_content #articles_content .card{
     margin: 10px;
+}
+#main_content #articles_content .card .card-img-top {
+    height: 180px;
+    object-fit: cover
+}
+#main_content #articles_content .card .card-body{
+    height: 220px;
 }
 
 

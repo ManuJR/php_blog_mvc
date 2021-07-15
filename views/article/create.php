@@ -19,12 +19,23 @@
 			<h1 class="text-center"> Nuevo artículo </h1>
 			<div class="row justify-content-center">
 				<div class="col-6">
-					<form action="/article/create" method="post">
+					<form action="/article/new" method="post" enctype="multipart/form-data">
 						<div class="form-group">
 							<input type="text" class="form-control" id="title" name="title" placeholder="Título del artículo...">
 						</div>
 						<div class="form-group">				
 							<textarea class="form-control" id="text" name="text" rows="6" placeholder="Escribe tu artículo..."></textarea>
+						</div>
+						<div class="form-group">
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+									<span class="input-group-text">Upload</span>
+								</div>
+								<div class="custom-file">
+									<input type="file" class="custom-file-input" id="img_header" name="img_header">
+									<label class="custom-file-label" for="img_header">Elige una imagen</label>
+								</div>
+							</div>
 						</div>
 						<div class="form-group">
 							<input type="submit" class="btn btn-primary" value="Guardar" >

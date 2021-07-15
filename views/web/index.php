@@ -14,10 +14,11 @@
 	    require_once($_SERVER['DOCUMENT_ROOT']."/modules/navigator.php");
 	?>
     <div id="main_content" class="d-flex flex-column">
-		<div id="header_actions">
-			<a href="/article/new" class="btn btn-success"> Nuevo artículo </a>
-		</div>
-
+		<?php if( $session -> isLogged() ){ ?>
+			<div id="header_actions">
+				<a href="/article/new" class="btn btn-success"> Nuevo artículo </a>
+			</div>
+		<?php } ?>
 		<div id="articles_content" class="d-flex align-items-start">
 
 			<?php

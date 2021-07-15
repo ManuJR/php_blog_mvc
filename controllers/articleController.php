@@ -13,10 +13,12 @@
            
             try {
 
-                Article::create($_POST, $session);
-
+                $article = Article::create( $session, $_POST);
+                header("Location: /article/$article->id");
             } catch (\Throwable $th) {
-               echo $th->getMessage();
+                
+                $error = $th->getMessage();
+                require_once($_SERVER['DOCUMENT_ROOT']."/views/article/create.php");
             }
         }
 
@@ -30,7 +32,6 @@
 
             require_once($_SERVER['DOCUMENT_ROOT']."/views/article/create.php");
         }
-
 
         public function show( $id ){
             global $session;
@@ -74,6 +75,7 @@
             }
 
         }
+    
     }
     
 

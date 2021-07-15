@@ -23,7 +23,7 @@
 			</div>
 		<?php } ?>
 		<div class="row flex-column justify-content-center">
-			<img src="/assets/imgs/blog_default.png">
+			<img src="<?= $article -> getImage() ?>">
 			<span class="created"><?= $article -> created_at ?></span>
 		</div>
 

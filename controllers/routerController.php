@@ -15,7 +15,7 @@
 
 
         /* Dos tipos de url:
-            1.  /article/create, /login, /signup ...
+            1.  /article/new, /login, /signup ...
             2.  /article/3 , /article/edit/34  ...
         */
 
@@ -77,7 +77,7 @@
             $this->request( "GET", "/article/new", "ArticleController", "new");
 
             // Creación de artículo
-            $this->request( "POST", "/article/create", "ArticleController", "create");
+            $this->request( "POST", "/article/new", "ArticleController", "create");
 
             // Visualización de artículo /article/{id}
             $this->request( "GET", "/article/:id", "ArticleController", "show");
