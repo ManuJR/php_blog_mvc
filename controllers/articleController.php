@@ -1,4 +1,15 @@
 <?php
+    /**
+     *  CRUD del ARTICLE
+     * 
+     * CREATE -->   VISTA 
+     *              ACCIÓN
+     * UPDATE   --> VISTA
+     *          --> ACCIÓN
+     * READ     --> VISTA
+     * DELETE   --> ACCIÓN
+     * 
+     */
 
     class ArticleController
     {
@@ -66,7 +77,8 @@
             global $session;
             try {
                 
-                $update_article = Article::update( $id , $_POST, $session);
+                $article = Article::getById( $id );
+                $article -> update( $session, $_POST );
                 header("Location:/article/edit/$id");
                 return;
 

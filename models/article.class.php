@@ -38,7 +38,7 @@
             if($this->img == Article::DEFAULT_IMG_HEADER){
                 return $this->img;
             }
-            $folder_img = "/uploads/post_$this->id/";
+            $folder_img = "/uploads/posts/$this->id/";
             return $folder_img.$this->img;
         }
         
@@ -95,22 +95,36 @@
             return $article;
         }
 
-        public static function update( $id, $params, Session $session ){
+        public function update( Session $session, $params ){
             // si nohay session, lanzamos excepción de error
             if( !$session->isLogged() ){
                 throw new Exception("No hay ningún usuario logueado");
             }
-
             $db = DBConnection::connect();
 
-            $title      = $params['title'];
-            $text       = $params['text'];
+            $this -> title      = $params['title'];
+            $this -> text       = $params['text'];
+
+            // Comprobamos si la imagen es válida;
+            $old_image = $this -> img;
+            $this -> img = Article::validationUploadedImg();
+
+            // Si lo es:
+            // 1. Borramos imagen antigua
+            $this -> deleteOldImg( $old_image );
+
+            // 2. Subimos imagen nueva
+            $this -> uploadImg( $_FILES['img_header'] );
+            
             
             // Hay que coger el user_id de la SESSION ACTIVA.
             $user_id    = $session -> getUserId();
-
+            if( !$this->isWritedByLoggedUser() ){
+                throw new Exception("No tienes permiso para editar este artículo");
+            }
+            
             // Query de guardado en BBDD
-            $q_update = "UPDATE `article` SET `title`='$title',`text`='$text' WHERE `id`= '$id'";
+            $q_update = "UPDATE `article` SET `title`='$this->title',`text`='$this->text', `img`='$this->img' WHERE `id`= '$this->id'";
             
             // Ejecutar query
             $exec_q_insert = $db -> query($q_update);
@@ -118,14 +132,9 @@
             if( !$exec_q_insert ){
                 throw new Exception("Fallo al guardar artículo");
             }
-            // obtenemos el id generado por la última consulta mysqli
+            
            
-            $newpost_params = [ 
-                'id'    =>  $db -> insert_id,
-                'title' =>  $title,
-                'text'  =>  $text 
-            ];
-           return new Article( $newpost_params );
+           return $this;
 
         }
 
@@ -236,10 +245,13 @@
          * Ya tenemos el objeto Article() creado, y la ventaja de crearlo como método (no estático) es que tenemos acceso a sus propiedades, entre ellas el id
          */
         private function uploadImg( $img ){
-            $folder_article = "post_$this->id";
+            $folder_article = "posts/$this->id";
             // Crear carpeta de uploads, para guardar imagenes 
             if( !file_exists( $_SERVER['DOCUMENT_ROOT']."/uploads" ) ){
                 mkdir( $_SERVER['DOCUMENT_ROOT']."/uploads" );
+            }
+            if( !file_exists( $_SERVER['DOCUMENT_ROOT']."/uploads/posts" ) ){
+                mkdir( $_SERVER['DOCUMENT_ROOT']."/uploads/posts" );
             }
             // Crear carpeta de /id, para guardar imagenes 
             if( !file_exists( $_SERVER['DOCUMENT_ROOT']."/uploads/$folder_article" ) ){
@@ -256,6 +268,20 @@
             }
 
             return true;
+        }
+
+        private function deleteOldImg( $img ){
+            if( $img == Article::DEFAULT_IMG_HEADER || $img == "" ){
+                return;
+            }
+
+            $old_image = $_SERVER['DOCUMENT_ROOT']."/uploads/posts/$this->id/$img";
+            if( file_exists(  $old_image ) ){
+
+                unlink("uploads/posts/$this->id/$img");
+                return;
+            }
+
         }
     }
     

@@ -17,7 +17,11 @@
         <div id="edit_article" class="container-fluid page">
             <div class="row justify-content-center">
                 <div class="col-10">
-                    <form action="/article/edit/<?= $article -> id ?>" method="post">
+                    <form action="/article/edit/<?= $article -> id ?>" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <img src="<?= $article -> getImage() ?>" alt="">
+                        <input type="file" name="img_header" id="img_header">
+                    </div>
                         <div class="form-group">
                             <input type="text" class="form-control" id="title" name="title" placeholder="Título del artículo..." value="<?= $article -> title ?>">
                         </div>
