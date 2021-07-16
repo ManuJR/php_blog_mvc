@@ -247,41 +247,26 @@
         private function uploadImg( $img ){
             $folder_article = "posts/$this->id";
             // Crear carpeta de uploads, para guardar imagenes 
-            if( !file_exists( $_SERVER['DOCUMENT_ROOT']."/uploads" ) ){
-                mkdir( $_SERVER['DOCUMENT_ROOT']."/uploads" );
-            }
-            if( !file_exists( $_SERVER['DOCUMENT_ROOT']."/uploads/posts" ) ){
-                mkdir( $_SERVER['DOCUMENT_ROOT']."/uploads/posts" );
-            }
-            // Crear carpeta de /id, para guardar imagenes 
-            if( !file_exists( $_SERVER['DOCUMENT_ROOT']."/uploads/$folder_article" ) ){
-                mkdir( $_SERVER['DOCUMENT_ROOT']."/uploads/$folder_article" );
-            }
-            $final_target = $_SERVER['DOCUMENT_ROOT']."/uploads/$folder_article/$this->img";
+            ManageFile::createFolder("/uploads");
+            ManageFile::createFolder("/uploads/posts");
+            ManageFile::createFolder("/uploads/posts/$this->id");
+
+            $final_target = "/uploads/$folder_article/$this->img";
             // Preguntamos si ya está guardada. Si es que si, no hacemos nada
-            if( file_exists( $_SERVER['DOCUMENT_ROOT']."/uploads/$folder_article/$this->img" ) ){
+            if( ManageFile::exists( $final_target ) ){
                 return;
             }
 
-            if( !move_uploaded_file( $img['tmp_name'],  $final_target)){
-                return false;
-            }
+            return ManageFile::uploadFile($img['tmp_name'], $final_target);
 
-            return true;
         }
 
         private function deleteOldImg( $img ){
             if( $img == Article::DEFAULT_IMG_HEADER || $img == "" ){
                 return;
             }
-
-            $old_image = $_SERVER['DOCUMENT_ROOT']."/uploads/posts/$this->id/$img";
-            if( file_exists(  $old_image ) ){
-
-                unlink("uploads/posts/$this->id/$img");
-                return;
-            }
-
+            $old_image = "/uploads/posts/$this->id/$img";
+            ManageFile::deleteFile( $old_image );
         }
     }
     
