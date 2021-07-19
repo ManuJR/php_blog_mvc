@@ -12,7 +12,7 @@
 <?php
 	require_once($_SERVER['DOCUMENT_ROOT']."/modules/navigator.php");
 
-	?>
+?>
 
 	<!-- POST -->
 	<div id="post" class="container page">

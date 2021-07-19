@@ -44,6 +44,18 @@
             $session -> destroy();
             header("Location: /");
         }
+
+        public function profile()
+        {
+            global $session;
+            // Si no hay session abierta, no dejamos pasar--> redirigimos a index
+
+            if( !$session -> isLogged() ){
+                header("Location: /");
+            }
+
+            require_once($_SERVER['DOCUMENT_ROOT']."/views/user/profile.php");
+        }
     }
     
 

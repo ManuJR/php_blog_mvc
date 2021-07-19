@@ -27,6 +27,7 @@
          * @param $action Método del controlador que se ejecuta
          */
         public function request( $method_must, $uri_must, $controller, $action ){
+            global $session;
             $id = null;
             
             // Sustituimos el caracter / por la / escapada: \/ , para generar la expresión regular de forma dinámica con cualquier uri.
@@ -72,6 +73,8 @@
             
             // POST    /logout        Logout USARIO
             $this->request( "POST", "/logout", "UserController", "logout");
+
+            $this->request( "GET", "/profile", "UserController", "profile");
 
             // Vista de creación de artículo
             $this->request( "GET", "/article/new", "ArticleController", "new");

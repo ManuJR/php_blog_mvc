@@ -47,8 +47,7 @@
 
 	<!-- FOOTER -->
 	<?php
-	require_once($_SERVER['DOCUMENT_ROOT']."/modules/footer.php");
-
+	    require_once($_SERVER['DOCUMENT_ROOT']."/modules/footer.php");
 	?>
 </body>
 </html>
