@@ -88,7 +88,7 @@
                 $id = $session -> getUserId();
                 $user = User::getById( $id );
                 $user -> update( $session, $_POST );
-               // header("Location:/profile/");
+                header("Location:/profile/");
                 return;
 
             } catch (\Throwable $th) {

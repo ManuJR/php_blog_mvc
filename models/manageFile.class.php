@@ -31,6 +31,28 @@
                 return;
             }
         }
+
+        public static function validationUploadedImg( $file_img_name ){
+
+            if( !isset( $_FILES ) && empty( $_FILES ) ){
+                return "";
+            }
+
+            if( !isset( $_FILES[$file_img_name]['name'] ) || empty( $_FILES[$file_img_name]['name'] ) ){
+                return "";
+            }
+
+            $img    = $_FILES[$file_img_name];
+            // 2. Validar tipo de imagen: png, jpg, jpeg .gif ...
+            $type   = $img['type']; // image/gif, image/png, image/jpeg
+
+            if( $type != 'image/gif' && $type != 'image/png' && $type != 'image/jpeg'){
+                throw new Exception("La imagen subida no es un archivo válido");
+            }
+            return $img['name'] ;
+        }
+
+        
     }
 
 

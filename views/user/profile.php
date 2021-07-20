@@ -20,7 +20,7 @@
         ?>
         <div class="profile_user">
             <div class="column left">
-                <img src="/assets/imgs/profile-user.svg" alt="" >
+                <img src=" <?= $user->getSrcImg() ?>" alt="" >
                 <p class="created_date">
                     <b>Fecha de creación:</b> <?= $user->created_at ?>
                 </p>

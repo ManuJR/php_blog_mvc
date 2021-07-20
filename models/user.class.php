@@ -1,6 +1,7 @@
 <?php
 
     class User extends DBConnection {
+        const DEFAULT_IMG_PROFILE= "/assets/imgs/profile-user.svg";
         private $id;
         private $name;
         private $surname;
@@ -21,7 +22,7 @@
 
         public function getSrcImg(){
             if( !$this->img || empty($this->img) ){
-                return "/assets/imgs/profile-user.svg";
+                return self::DEFAULT_IMG_PROFILE;
             }
             return "/uploads/users/$this->id/$this->img";
         }
@@ -135,7 +136,7 @@
 
 
         public function update( Session $session, $params ){
-            // si nohay session, lanzamos excepción de error
+            
             if( !$session->isLogged() ){
                 throw new Exception("No hay ningún usuario logueado");
             }
@@ -144,22 +145,23 @@
 
             $this -> name           = $params['name'];
             $this -> surname        = $params['surname'];
-            // separamos la edición del email: (nueva session...)
+  
+            $old_image = $this -> img;
+            $new_img = ManageFile::validationUploadedImg('profile_img');
 
-            // Comprobamos si la imagen es válida;
-            // $old_image = $this -> img;
-            // $this -> img = Article::validationUploadedImg();
+            if( !empty($new_img) ){
+                $this ->img = $new_img;
 
-            // // Si lo es:
-            // // 1. Borramos imagen antigua
-            // $this -> deleteOldImg( $old_image );
+                $this -> deleteOldImg( $old_image );
 
-            // // 2. Subimos imagen nueva
-            // $this -> uploadImg( $_FILES['img_header'] );
+                $this -> uploadImg( $_FILES['profile_img'] );
+  
+            }
+
             
             
             // Query de guardado en BBDD
-            $q_update = "UPDATE `user` SET `name`='$this->name',`surname`='$this->surname' WHERE `id`= '$this->id'";
+            $q_update = "UPDATE `user` SET `name`='$this->name',`surname`='$this->surname', `img`='$this->img' WHERE `id`= '$this->id'";
             
             // Ejecutar query
             $exec_q_insert = $db -> query($q_update);
@@ -306,6 +308,32 @@
             }
             return true;
            
+        }
+
+        private function deleteOldImg( $img ){
+            if( $img == self::DEFAULT_IMG_PROFILE || $img == "" ){
+                return;
+            }
+            $old_image = "/uploads/users/$this->id/$img";
+            ManageFile::deleteFile( $old_image );
+        }
+
+
+        private function uploadImg( $img ){
+            $folder_user = "users/$this->id";
+            // Crear carpeta de uploads, para guardar imagenes 
+            ManageFile::createFolder("/uploads");
+            ManageFile::createFolder("/uploads/users");
+            ManageFile::createFolder("/uploads/users/$this->id");
+
+            $final_target = "/uploads/$folder_user/$this->img";
+            // Preguntamos si ya está guardada. Si es que si, no hacemos nada
+            if( ManageFile::exists( $final_target ) ){
+                return;
+            }
+
+            return ManageFile::uploadFile($img['tmp_name'], $final_target);
+
         }
 
     }
