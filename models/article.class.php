@@ -34,6 +34,12 @@
             return $this->$name;
         }
 
+        public function getCreatedAt(){
+            $fecha = new DateTime('2021-07-07 10:10:35');
+            $timestap = $fecha->getTimestamp();
+            return;
+        }
+
         public function getImage(){
             if($this->img == Article::DEFAULT_IMG_HEADER){
                 return $this->img;
@@ -268,6 +274,8 @@
             $old_image = "/uploads/posts/$this->id/$img";
             ManageFile::deleteFile( $old_image );
         }
+
+        
     }
     
 

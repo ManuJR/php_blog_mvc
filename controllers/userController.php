@@ -40,7 +40,8 @@
 
         public function logout(){
             global $session;
-        
+            
+     
             $session -> destroy();
             header("Location: /");
         }
@@ -50,11 +51,50 @@
             global $session;
             // Si no hay session abierta, no dejamos pasar--> redirigimos a index
 
+            $active_links = [
+                "show"      => "active",
+                "edit"      => "",
+                "articles"  => ""
+            ];
             if( !$session -> isLogged() ){
                 header("Location: /");
             }
-
+            $id = $session -> getUserId();
+            $user = User::getById( $id );
+          
             require_once($_SERVER['DOCUMENT_ROOT']."/views/user/profile.php");
+        }
+
+        public function edit_view()
+        {
+            global $session;
+            $active_links = [
+                "show"      => "",
+                "edit"      => "active",
+                "articles"  => ""
+            ];
+            if( !$session -> isLogged() ){
+                header("Location: /");
+            }
+            $id = $session -> getUserId();
+            $user = User::getById( $id );
+
+            require_once($_SERVER['DOCUMENT_ROOT']."/views/user/edit.php");
+        }
+
+        public function update( $id ){
+            global $session;
+            try {
+                $id = $session -> getUserId();
+                $user = User::getById( $id );
+                $user -> update( $session, $_POST );
+               // header("Location:/profile/");
+                return;
+
+            } catch (\Throwable $th) {
+               echo $th->getMessage();
+            }
+
         }
     }
     

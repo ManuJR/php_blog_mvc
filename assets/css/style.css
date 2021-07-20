@@ -57,6 +57,82 @@
 .page#edit_article textarea {
     height: 80vh;
 }
+
+/* Profile User */
+#main_content .show_user{
+    padding: 30px;
+}
+#main_content .profile_user{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+}
+#main_content .profile_user .column{
+    padding: 25px 40px;
+}
+#main_content .profile_user .column.left{
+    width: 30%;
+}
+#main_content .profile_user .column.right{
+    width: 70%;
+}
+#main_content .profile_user .column img{
+    width:200px;
+    height:200px;
+    object-fit: cover;
+    border-radius: 50%;
+    background: radial-gradient(#ffffff, #d1dfea);
+}
+#main_content .profile_user .column .created_date{
+    margin-top: 25px;
+    text-align: center;
+}
+
+/* Edit User */
+#main_content .profile_user.edit .column .input_img_profile{
+    width: 200px;
+    height: 200px;
+    position: relative;
+    cursor: pointer;
+}
+#main_content .profile_user.edit .column .input_img_profile input{
+    cursor: pointer;
+}
+#main_content .profile_user.edit .column .input_img_profile:hover::before{
+    cursor: pointer;
+    position: absolute;
+    content: "Sube una foto";
+    font-weight: bold;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(163, 163, 163, 0.459);
+    
+}
+#main_content .profile_user.edit .column .input_img_profile input{
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+#main_content .profile_user.secondary_actions {
+    border-top: 1px solid#eee;
+    padding-top: 25px;
+}
+#main_content .profile_user.secondary_actions .column form{
+    display: flex;
+}
+#main_content .profile_user.secondary_actions .column form input.form-control{
+    margin-right: 30px;
+    width: 60%;
+}
+
+
+
 /* FOOTER */
 footer{
     height: 100px;

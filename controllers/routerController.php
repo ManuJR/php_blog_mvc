@@ -75,6 +75,9 @@
             $this->request( "POST", "/logout", "UserController", "logout");
 
             $this->request( "GET", "/profile", "UserController", "profile");
+            $this->request( "GET", "/profile/edit", "UserController", "edit_view");
+            $this->request( "POST", "/profile/edit", "UserController", "update");
+
 
             // Vista de creación de artículo
             $this->request( "GET", "/article/new", "ArticleController", "new");

@@ -15,22 +15,27 @@
     	require_once($_SERVER['DOCUMENT_ROOT']."/modules/navigator.php");
     ?>
     <div id="main_content" class="d-flex flex-column">
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#"><i class="bi bi-person-fill"></i> Tu perfil</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"><i class="bi bi-pencil-fill"></i> Editar Perfil</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"><i class="bi bi-folder-fill"></i> Tus Artículos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
-        </ul>
+        <?php
+            require_once($_SERVER['DOCUMENT_ROOT']."/modules/nav_user.php");
+        ?>
+        <div class="profile_user">
+            <div class="column left">
+                <img src="/assets/imgs/profile-user.svg" alt="" >
+                <p class="created_date">
+                    <b>Fecha de creación:</b> <?= $user->created_at ?>
+                </p>
+            </div>
+            <div class="column right">
+                <h1> <?= $user->getFullName() ?></h1>
+                <div>Correo:<?= $user->email ?></div>
+                <div>Nombre: <?= $user->name ?></div>
+                <div>Apellido: <?= $user->surname ?></div>
+            </div>
+        </div>
 
     </div>
+
+
 
 
 
