@@ -96,6 +96,35 @@
             }
 
         }
+
+        public function change_email( ){
+            global $session;
+            try {
+                $id = $session -> getUserId();
+                $user = User::getById( $id );
+                $user -> changeEmail( $session, $_POST );
+                header("Location:/profile/");
+                return;
+
+            } catch (\Throwable $th) {
+               echo $th->getMessage();
+            }
+
+        }
+
+        public function change_password(){
+            global $session;
+            try {
+                $id = $session -> getUserId();
+                $user = User::getById( $id );
+                $user -> changePassword( $session, $_POST );
+                header("Location:/profile/");
+                return;
+
+            } catch (\Throwable $th) {
+               echo $th->getMessage();
+            }
+        }
     }
     
 

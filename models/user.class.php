@@ -159,7 +159,6 @@
             }
 
             
-            
             // Query de guardado en BBDD
             $q_update = "UPDATE `user` SET `name`='$this->name',`surname`='$this->surname', `img`='$this->img' WHERE `id`= '$this->id'";
             
@@ -173,6 +172,67 @@
            
            return $this;
 
+        }
+
+
+        public function changeEmail(  Session $session, $params ){
+              
+            if( !$session->isLogged() ){
+                throw new Exception("No hay ningún usuario logueado");
+            }
+
+            if( !isset( $params['email'] ) || empty($params['email']) ){
+                throw new Exception("Campo email no puede estar vacío");
+            }
+            
+            self::validateEmail( $params['email'] ); 
+            
+            $db = DBConnection::connect();
+            $this -> email           = $params['email'];
+
+            
+            // Query de guardado en BBDD
+            $q_update = "UPDATE `user` SET `email`='$this->email' WHERE `id`= '$this->id'";
+            
+            // Ejecutar query
+            $exec_q_insert = $db -> query($q_update);
+
+            if( !$exec_q_insert ){
+                throw new Exception("Fallo al cambiar el email");
+            }
+
+            $session -> setEmail($this -> email );
+           
+           return $this;
+        }
+
+        public function changePassword(Session $session, $params ){
+              
+            if( !$session->isLogged() ){
+                throw new Exception("No hay ningún usuario logueado");
+            }
+
+            if( !isset( $params['password'] ) || empty($params['password']) ){
+                throw new Exception("Campo password no puede estar vacío");
+            }
+            
+            self::validatePassword( $params['password'] ); 
+            
+            $db = DBConnection::connect();
+            $this -> password  =  self::cifratePassword( $params['password'] );
+
+            
+            // Query de guardado en BBDD
+            $q_update = "UPDATE `user` SET `password`='$this->password' WHERE `id`= '$this->id'";
+            
+            // Ejecutar query
+            $exec_q_insert = $db -> query($q_update);
+
+            if( !$exec_q_insert ){
+                throw new Exception("Fallo al cambiar la contraseña");
+            }
+           
+           return $this;
         }
 
         private static function checkLoginDB( $params ){

@@ -59,6 +59,11 @@
         public function getId(){
             return $this -> data['id'];
         }
+
+        public function setEmail( $email ){
+            $_SESSION['email']  = $email;
+            $this -> data['email'] = $email;
+        }
         
     }
     

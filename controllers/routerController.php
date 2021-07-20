@@ -77,6 +77,8 @@
             $this->request( "GET", "/profile", "UserController", "profile");
             $this->request( "GET", "/profile/edit", "UserController", "edit_view");
             $this->request( "POST", "/profile/edit", "UserController", "update");
+            $this->request( "POST", "/profile/changeEmail", "UserController", "change_email");
+            $this->request( "POST", "/profile/changePassword", "UserController", "change_password");
 
 
             // Vista de creación de artículo
