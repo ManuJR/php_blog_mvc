@@ -169,6 +169,16 @@
 
             return $articles;
         }
+
+        public static function getCount(  ){
+            $db = DBConnection::connect();
+         
+            $query = "SELECT * FROM `article` WHERE 1";
+            $exec_query = $db -> query($query);
+
+            return $exec_query -> num_rows;
+            
+        }
         /**
          * Función que obtiene un artículo por id de la BBDD
          * Devuelve un Objeto Artículo
@@ -219,7 +229,7 @@
             return false;
             
         }
-
+        
         /**
          * Función encargada de validar y subir la imagen de cabecera
          * @return $name_img nombre de la imagen a guardar

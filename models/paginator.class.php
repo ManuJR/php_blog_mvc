@@ -14,7 +14,10 @@
             $this -> current_page = !empty($page) ? $page : 1;
             $this -> limit = 4;
             $this -> offset = ($this->current_page-1) * $this->limit;
+            $this -> total_items = Article::getCount();
+            $this -> total_pages = ceil( $this -> total_items / $this -> limit ); 
             $this -> element = $this->generatePaginator();
+
         }
 
         public function __get($name)
@@ -25,26 +28,31 @@
         // función que cuente los items totales de BBDD --> rellenar el resto de props.
 
         private function generatePaginator(){
-            $result = "<nav aria-label='...'>
-                <ul class='pagination'>
-                    <li class='page-item disabled'>
-                    <a class='page-link' href='#' tabindex='-1'>Previous</a>
-                    </li>
+            $result = "<nav aria-label='...'><ul class='pagination'>";
+           
+            if( $this->current_page > 1 ){
+                $result .= "<li class='page-item'>
+                            <a class='page-link' href='/page/".($this->current_page-1)."' tabindex='-1'>Previous</a>
+                        </li>";
+            }
+            
+            for ($i=1; $i <= $this->total_pages; $i++) { 
 
-                    <li class='page-item'><a class='page-link' href='#'>1</a></li>
-                    <li class='page-item active'>
-                    <a class='page-link' href='#'>2 <span class='sr-only'>(current)</span></a>
-                    </li>
-                    <li class='page-item'><a class='page-link' href='#'>3</a></li>
-                    <li class='page-item'>
+                $active = ( $i == $this->current_page ) ? 'active' : '';
 
-                    <a class='page-link' href='#'>Next</a>
-                    </li>
-                </ul>
-		    </nav>";
+                $result .= "<li class='page-item $active'> <a class='page-link' href='/page/$i'>$i</a> </li>";
+            }
+
+            if( $this -> current_page < $this -> total_pages ){
+                $result .= "<li class='page-item'>
+                            <a class='page-link' href='/page/".($this->current_page+1)."'>Next</a>
+                        </li>";
+            }
+
+            $result .= "</ul></nav>";
+
             return $result;
         }
-
 
     }
 
