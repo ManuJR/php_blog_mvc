@@ -29,6 +29,8 @@
 			?>
 			
 		</div>
+
+	    <?=  $paginator -> element; ?>
     </div>
 
     <!-- FOOTER -->

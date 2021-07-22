@@ -62,6 +62,8 @@
            
             
             $this->request( "GET", "/", "WebController", "index");
+            $this->request( "GET", "/page/:id", "WebController", "index");
+
             $this->request( "GET", "/login", "WebController", "login");
             $this->request( "GET", "/signup", "WebController", "signup");
 

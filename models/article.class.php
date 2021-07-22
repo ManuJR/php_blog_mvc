@@ -144,12 +144,12 @@
 
         }
 
-        public static function list( ){
+        public static function list( $limit=4, $offset=0 ){
             // 1. conexión
             $db = DBConnection::connect();
 
             // 2. query de SELECT
-            $query = "SELECT * FROM `article` WHERE 1 ORDER BY `created_at` DESC";
+            $query = "SELECT * FROM `article` WHERE 1 ORDER BY `created_at` DESC LIMIT $limit OFFSET $offset";
 
             // 3. ejecutar query
             $exec_query = $db -> query($query);

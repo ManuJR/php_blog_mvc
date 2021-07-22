@@ -10,9 +10,14 @@ $session;
         }
 
         
-        public function index(){
+        public function index( $page=1 ){
           global $session;
-          $articles = Article::list();
+
+         // $paginator = new Paginator( $page );
+          
+          $offset = ($page-1)*4;
+          $articles = Article::list( 4,   $offset );
+          
           require_once($_SERVER['DOCUMENT_ROOT']."/views/web/index.php");
 
         }
