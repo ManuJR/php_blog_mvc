@@ -6,11 +6,6 @@
         private const PASSWORD   = "root";
         private const BBDD       = "trazos_blog";
 
-        // private const HOST       = "localhost";
-        // private const USER       = "mjimenez_2021";
-        // private const PASSWORD   = 'WkT(Ev6,8-Vy';
-        // private const BBDD       = "mjimenez_trazos_blog_2021";
-
         private $conection;
 
         public function __construct(){
