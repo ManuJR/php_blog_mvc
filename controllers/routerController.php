@@ -9,8 +9,11 @@
        
 
         public function __construct(){
-            $this->method   =   $_SERVER['REQUEST_METHOD'];
-            $this->uri      =   $_SERVER['REQUEST_URI'];
+           
+            $this->method       =   $_SERVER['REQUEST_METHOD'];
+            $this->query_string =   $_SERVER['QUERY_STRING'];
+            $this->uri          =   str_replace( "?".$this->query_string , "", $_SERVER['REQUEST_URI']);
+
         }
 
 
@@ -42,6 +45,9 @@
                 $regexp_uri = str_replace(':id', '[0-9]+', $regexp_uri);
                 $base_url = preg_replace("/[0-9]+$/", "" ,$this->uri);
                 $id = str_replace( $base_url, "",  $this->uri );
+
+                //$id = str_replace( "page=", "",  $this->query_string );
+
            // }
 
 

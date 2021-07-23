@@ -13,7 +13,7 @@ $session;
         public function index( $page=1 ){
           global $session;
 
-          $paginator = new Paginator( $page , "Programación" );
+          $paginator = new Paginator( $page);
 
           $articles = Article::list( $paginator -> limit,   $paginator -> offset );
           
