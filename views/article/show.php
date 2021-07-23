@@ -10,7 +10,7 @@
 </head>
 <body>
 <?php
-	require_once($_SERVER['DOCUMENT_ROOT']."/modules/navigator.php");
+	require_once($_SERVER['DOCUMENT_ROOT'].BASE_FOLDER."/modules/navigator.php");
 
 ?>
 
@@ -23,7 +23,7 @@
 			</div>
 		<?php } ?>
 		<div class="row flex-column justify-content-center">
-			<img src="<?= $article -> getImage() ?>">
+			<img src="<?= BASE_FOLDER.$article -> getImage() ?>">
 			<span class="created"><?= $article -> created_at ?></span>
 		</div>
 
@@ -41,7 +41,7 @@
 
 	<!-- FOOTER -->
 	<?php
-	require_once($_SERVER['DOCUMENT_ROOT']."/modules/footer.php");
+	require_once($_SERVER['DOCUMENT_ROOT'].BASE_FOLDER."/modules/footer.php");
 
 	?>
 </body>

@@ -2,20 +2,19 @@
     // DEBUG ERRORS
     ini_set('display_errors', "1");
     error_reporting(E_ALL);
-    echo "index";
-    
-    require_once($_SERVER['DOCUMENT_ROOT']."/models/session.class.php");
-    require_once($_SERVER['DOCUMENT_ROOT']."/models/dbconnection.class.php");
-    require_once($_SERVER['DOCUMENT_ROOT']."/models/article.class.php");
-    require_once($_SERVER['DOCUMENT_ROOT']."/models/user.class.php");
-    require_once($_SERVER['DOCUMENT_ROOT']."/models/manageFile.class.php");
-    require_once($_SERVER['DOCUMENT_ROOT']."/models/paginator.class.php");
+    echo "config_ini";
+    require_once($_SERVER['DOCUMENT_ROOT'].BASE_FOLDER."/models/session.class.php");
+    require_once($_SERVER['DOCUMENT_ROOT'].BASE_FOLDER."/models/dbconnection.class.php");
+    require_once($_SERVER['DOCUMENT_ROOT'].BASE_FOLDER."/models/article.class.php");
+    require_once($_SERVER['DOCUMENT_ROOT'].BASE_FOLDER."/models/user.class.php");
+    require_once($_SERVER['DOCUMENT_ROOT'].BASE_FOLDER."/models/manageFile.class.php");
+    require_once($_SERVER['DOCUMENT_ROOT'].BASE_FOLDER."/models/paginator.class.php");
 
 
-    require_once($_SERVER['DOCUMENT_ROOT']."/controllers/articleController.php");
-    require_once($_SERVER['DOCUMENT_ROOT']."/controllers/routerController.php");
-    require_once($_SERVER['DOCUMENT_ROOT']."/controllers/userController.php");
-    require_once($_SERVER['DOCUMENT_ROOT']."/controllers/webController.php");
+    require_once($_SERVER['DOCUMENT_ROOT'].BASE_FOLDER."/controllers/articleController.php");
+    require_once($_SERVER['DOCUMENT_ROOT'].BASE_FOLDER."/controllers/routerController.php");
+    require_once($_SERVER['DOCUMENT_ROOT'].BASE_FOLDER."/controllers/userController.php");
+    require_once($_SERVER['DOCUMENT_ROOT'].BASE_FOLDER."/controllers/webController.php");
 
 
     // Archivo de Configuración y carga de ficheros

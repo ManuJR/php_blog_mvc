@@ -10,7 +10,7 @@
 <body>
 
 <?php
-	require_once($_SERVER['DOCUMENT_ROOT']."/modules/navigator.php");
+	require_once($_SERVER['DOCUMENT_ROOT'].BASE_FOLDER."/modules/navigator.php");
 
 	?>
 	<div id="main_content">
@@ -19,7 +19,7 @@
 			<h1 class="text-center"> Entra en el Blog </h1>
 			<div class="row justify-content-center">
 				<div class="col-6">
-					<form action="/login" method="post">
+					<form action="<?= BASE_FOLDER ?>/login" method="post">
 						<div class="form-group">
 							<label for="email">Correo</label>
 							<input type="email" class="form-control" id="email" name="email" >
@@ -45,7 +45,7 @@
 	</div>
 	<!-- FOOTER -->
   	<?php
-	require_once($_SERVER['DOCUMENT_ROOT']."/modules/footer.php");
+	require_once($_SERVER['DOCUMENT_ROOT'].BASE_FOLDER."/modules/footer.php");
 	?>
 </body>
 </html>

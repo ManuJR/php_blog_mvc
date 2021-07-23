@@ -10,7 +10,7 @@
 <body>
 
 <?php
-	require_once($_SERVER['DOCUMENT_ROOT']."/modules/navigator.php");
+	require_once($_SERVER['DOCUMENT_ROOT'].BASE_FOLDER."/modules/navigator.php");
 
 	?>
 	<div id="main_content">
@@ -54,7 +54,7 @@
 	</div>
 	<!-- FOOTER -->
   	<?php
-	require_once($_SERVER['DOCUMENT_ROOT']."/modules/footer.php");
+	require_once($_SERVER['DOCUMENT_ROOT'].BASE_FOLDER."/modules/footer.php");
 	?>
 </body>
 </html>

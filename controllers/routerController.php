@@ -12,7 +12,10 @@
            
             $this->method       =   $_SERVER['REQUEST_METHOD'];
             $this->query_string =   $_SERVER['QUERY_STRING'];
-            $this->uri          =   str_replace( "?".$this->query_string , "", $_SERVER['REQUEST_URI']);
+            $this->uri          =   str_replace( BASE_FOLDER, "", $_SERVER['REQUEST_URI']);
+            $this->uri          =   str_replace( "?".$this->query_string , "", $this->uri);
+            
+        
 
         }
 

@@ -32,7 +32,7 @@
            
             if( $this->current_page > 1 ){
                 $result .= "<li class='page-item'>
-                            <a class='page-link' href='/page/".($this->current_page-1)."' tabindex='-1'>Previous</a>
+                            <a class='page-link' href='".BASE_FOLDER."/page/".($this->current_page-1)."' tabindex='-1'>Previous</a>
                         </li>";
             }
             
@@ -40,12 +40,12 @@
 
                 $active = ( $i == $this->current_page ) ? 'active' : '';
 
-                $result .= "<li class='page-item $active'> <a class='page-link' href='/page/$i'>$i</a> </li>";
+                $result .= "<li class='page-item $active'> <a class='page-link' href='".BASE_FOLDER."/page/$i'>$i</a> </li>";
             }
 
             if( $this -> current_page < $this -> total_pages ){
                 $result .= "<li class='page-item'>
-                            <a class='page-link' href='/page/".($this->current_page+1)."'>Next</a>
+                            <a class='page-link' href='".BASE_FOLDER."/page/".($this->current_page+1)."'>Next</a>
                         </li>";
             }
 

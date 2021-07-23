@@ -14,13 +14,13 @@
            
                 $user = User::signup($_POST);
                 if($user){
-                    header("Location: /login");
+                    header("Location:".BASE_FOLDER."/login");
                 }
 
             } catch (\Throwable $th) {
                 echo "ERROR CREANDO USARIO<br>";
                 $error = $th->getMessage();
-                require_once($_SERVER['DOCUMENT_ROOT']."/views/user/signup.php");
+                require_once($_SERVER['DOCUMENT_ROOT'].BASE_FOLDER."/views/user/signup.php");
             }
         }
 
@@ -29,12 +29,12 @@
             try {
 
                 $user = User::login( $_POST );
-                header("Location: /");
+                header("Location:".BASE_FOLDER." /");
 
             } catch (\Throwable $th) {
               
                 $error = $th->getMessage();
-                require_once($_SERVER['DOCUMENT_ROOT']."/views/user/login.php");
+                require_once($_SERVER['DOCUMENT_ROOT'].BASE_FOLDER."/views/user/login.php");
             }
         }
 
@@ -43,7 +43,7 @@
             
      
             $session -> destroy();
-            header("Location: /");
+            header("Location:".BASE_FOLDER." /");
         }
 
         public function profile()
@@ -57,12 +57,12 @@
                 "articles"  => ""
             ];
             if( !$session -> isLogged() ){
-                header("Location: /");
+                header("Location:".BASE_FOLDER." /");
             }
             $id = $session -> getUserId();
             $user = User::getById( $id );
           
-            require_once($_SERVER['DOCUMENT_ROOT']."/views/user/profile.php");
+            require_once($_SERVER['DOCUMENT_ROOT'].BASE_FOLDER."/views/user/profile.php");
         }
 
         public function edit_view()
@@ -74,12 +74,12 @@
                 "articles"  => ""
             ];
             if( !$session -> isLogged() ){
-                header("Location: /");
+                header("Location:".BASE_FOLDER." /");
             }
             $id = $session -> getUserId();
             $user = User::getById( $id );
 
-            require_once($_SERVER['DOCUMENT_ROOT']."/views/user/edit.php");
+            require_once($_SERVER['DOCUMENT_ROOT'].BASE_FOLDER."/views/user/edit.php");
         }
 
         public function update( $id ){
@@ -88,7 +88,7 @@
                 $id = $session -> getUserId();
                 $user = User::getById( $id );
                 $user -> update( $session, $_POST );
-                header("Location:/profile/");
+                header("Location:".BASE_FOLDER."/profile/");
                 return;
 
             } catch (\Throwable $th) {
@@ -103,7 +103,7 @@
                 $id = $session -> getUserId();
                 $user = User::getById( $id );
                 $user -> changeEmail( $session, $_POST );
-                header("Location:/profile/");
+                header("Location:".BASE_FOLDER."/profile/");
                 return;
 
             } catch (\Throwable $th) {
@@ -118,7 +118,7 @@
                 $id = $session -> getUserId();
                 $user = User::getById( $id );
                 $user -> changePassword( $session, $_POST );
-                header("Location:/profile/");
+                header("Location:".BASE_FOLDER."/profile/");
                 return;
 
             } catch (\Throwable $th) {

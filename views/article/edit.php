@@ -10,7 +10,7 @@
 </head>
 <body>
 <?php
-	require_once($_SERVER['DOCUMENT_ROOT']."/modules/navigator.php");
+	require_once($_SERVER['DOCUMENT_ROOT'].BASE_FOLDER."/modules/navigator.php");
 ?>
 
     <div id="main_content">
@@ -19,7 +19,7 @@
                 <div class="col-10">
                     <form action="/article/edit/<?= $article -> id ?>" method="post" enctype="multipart/form-data">
                     <div class="form-group">
-                        <img src="<?= $article -> getImage() ?>" alt="">
+                        <img src="<?=  BASE_FOLDER.$article -> getImage() ?>" alt="">
                         <input type="file" name="img_header" id="img_header">
                     </div>
                         <div class="form-group">
@@ -47,7 +47,7 @@
 
 	<!-- FOOTER -->
 	<?php
-	    require_once($_SERVER['DOCUMENT_ROOT']."/modules/footer.php");
+	    require_once($_SERVER['DOCUMENT_ROOT'].BASE_FOLDER."/modules/footer.php");
 	?>
 </body>
 </html>

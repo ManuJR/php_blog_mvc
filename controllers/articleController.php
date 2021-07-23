@@ -25,11 +25,11 @@
             try {
 
                 $article = Article::create( $session, $_POST);
-                header("Location: /article/$article->id");
+                header("Location: ".BASE_FOLDER."/article/$article->id");
             } catch (\Throwable $th) {
                 
                 $error = $th->getMessage();
-                require_once($_SERVER['DOCUMENT_ROOT']."/views/article/create.php");
+                require_once($_SERVER['DOCUMENT_ROOT'].BASE_FOLDER."/views/article/create.php");
             }
         }
 
@@ -37,11 +37,11 @@
             global $session;
             // Si no hay session redirijo a login
             if( !$session -> isLogged() ){
-                header("Location: /login");
+                header("Location: ".BASE_FOLDER."/login");
                 return;
             }
 
-            require_once($_SERVER['DOCUMENT_ROOT']."/views/article/create.php");
+            require_once($_SERVER['DOCUMENT_ROOT'].BASE_FOLDER."/views/article/create.php");
         }
 
         public function show( $id ){
@@ -51,7 +51,7 @@
                 $author = $article -> author;
 
                 // carga de vista de artículo
-                require_once($_SERVER['DOCUMENT_ROOT']."/views/article/show.php");
+                require_once($_SERVER['DOCUMENT_ROOT'].BASE_FOLDER."/views/article/show.php");
 
             } catch (\Throwable $th) {
                echo $th->getMessage();
@@ -65,7 +65,7 @@
                 $article = Article::getById( $id );
                 
                 // carga de vista de artículo
-                require_once($_SERVER['DOCUMENT_ROOT']."/views/article/edit.php");
+                require_once($_SERVER['DOCUMENT_ROOT'].BASE_FOLDER."/views/article/edit.php");
 
             } catch (\Throwable $th) {
                echo $th->getMessage();
@@ -79,7 +79,7 @@
                 
                 $article = Article::getById( $id );
                 $article -> update( $session, $_POST );
-                header("Location:/article/edit/$id");
+                header("Location:/".BASE_FOLDER."article/edit/$id");
                 return;
 
             } catch (\Throwable $th) {

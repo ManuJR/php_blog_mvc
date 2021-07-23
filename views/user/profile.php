@@ -12,15 +12,15 @@
   </head>
   <body>
     <?php
-    	require_once($_SERVER['DOCUMENT_ROOT']."/modules/navigator.php");
+    	require_once($_SERVER['DOCUMENT_ROOT'].BASE_FOLDER."/modules/navigator.php");
     ?>
     <div id="main_content" class="d-flex flex-column">
         <?php
-            require_once($_SERVER['DOCUMENT_ROOT']."/modules/nav_user.php");
+            require_once($_SERVER['DOCUMENT_ROOT'].BASE_FOLDER."/modules/nav_user.php");
         ?>
         <div class="profile_user">
             <div class="column left">
-                <img src=" <?= $user->getSrcImg() ?>" alt="" >
+                <img src=" <?=  BASE_FOLDER.$user->getSrcImg() ?>" alt="" >
                 <p class="created_date">
                     <b>Fecha de creación:</b> <?= $user->created_at ?>
                 </p>
@@ -40,7 +40,7 @@
 
 
     <?php
-	    require_once($_SERVER['DOCUMENT_ROOT']."/modules/footer.php");
+	    require_once($_SERVER['DOCUMENT_ROOT'].BASE_FOLDER."/modules/footer.php");
 	?>
 
     <!-- Optional JavaScript; choose one of the two! -->

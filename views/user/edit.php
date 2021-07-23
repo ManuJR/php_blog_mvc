@@ -12,18 +12,18 @@
   </head>
   <body>
     <?php
-    	require_once($_SERVER['DOCUMENT_ROOT']."/modules/navigator.php");
+    	require_once($_SERVER['DOCUMENT_ROOT'].BASE_FOLDER."/modules/navigator.php");
     ?>
     <div id="main_content" class="d-flex flex-column">
         <?php
-            require_once($_SERVER['DOCUMENT_ROOT']."/modules/nav_user.php");
+            require_once($_SERVER['DOCUMENT_ROOT'].BASE_FOLDER."/modules/nav_user.php");
         ?>
         <form class="profile_user edit" action="/profile/edit" method="post" enctype="multipart/form-data">
 
             <div class="column left">
                 <div class="input_img_profile">
                     <input type="file" id="profile_img" name="profile_img">
-                    <img src=" <?= $user->getSrcImg() ?>" alt="" >
+                    <img src=" <?=  BASE_FOLDER.$user->getSrcImg() ?>" alt="" >
                 </div>
                 <p class="created_date">
                     <b>Fecha de creación:</b>  <?= $user->created_at ?>
@@ -68,7 +68,7 @@
 
 
     <?php
-	    require_once($_SERVER['DOCUMENT_ROOT']."/modules/footer.php");
+	    require_once($_SERVER['DOCUMENT_ROOT'].BASE_FOLDER."/modules/footer.php");
 	?>
 
     <!-- Optional JavaScript; choose one of the two! -->
