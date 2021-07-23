@@ -1,7 +1,7 @@
 <?php
   echo "index";
   // Receptor de TODAS las peticiones
-  const BASE_FOLDER="";
+  const BASE_FOLDER="/blog";
 
   require_once($_SERVER['DOCUMENT_ROOT'].BASE_FOLDER."/config/ini.php");
 
