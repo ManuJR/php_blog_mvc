@@ -1,5 +1,5 @@
 <?php
-  echo "MAIN";
+  
   // Receptor de TODAS las peticiones
   const BASE_FOLDER="/blog";
 
@@ -11,6 +11,6 @@
 
   $rc = new RouterController();
   $rc->manageUris();
-  print_r($rc);
+
 
 ?>

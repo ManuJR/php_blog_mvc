@@ -2,7 +2,6 @@
     // DEBUG ERRORS
     ini_set('display_errors', "1");
     error_reporting(E_ALL);
-    echo "config_ini";
     require_once($_SERVER['DOCUMENT_ROOT'].BASE_FOLDER."/models/session.class.php");
     require_once($_SERVER['DOCUMENT_ROOT'].BASE_FOLDER."/models/dbconnection.class.php");
     require_once($_SERVER['DOCUMENT_ROOT'].BASE_FOLDER."/models/article.class.php");
