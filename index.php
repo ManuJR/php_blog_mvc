@@ -1,5 +1,5 @@
 <?php
-  echo "index";
+  echo "MAIN";
   // Receptor de TODAS las peticiones
   const BASE_FOLDER="/blog";
 
